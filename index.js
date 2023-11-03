@@ -5,6 +5,8 @@ const express = require('express')
 const app = express()
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public'))
 
 // Custom middleware
 app.use(logger)
@@ -43,7 +45,7 @@ app.post('/api/genres', (req, res) => {
 
   const genre = {
     id: genres.length + 1,
-    name: req.body.name,
+    genre: req.body.genre,
   }
 
   genres.push(genre)
@@ -78,7 +80,7 @@ app.delete('/api/genres/:id', (req, res) => {
 // Reusable validation
 function validateGenre(genre) {
   const schema = {
-    name: Joi.string().min(3).required(),
+    genre: Joi.string().min(3).required(),
   }
 
   return (result = Joi.validate(genre, schema))
