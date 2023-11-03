@@ -1,7 +1,14 @@
 const Joi = require('joi')
+const auth = require('./auth')
+const logger = require('./logger')
 const express = require('express')
 const app = express()
+
 app.use(express.json())
+
+// Custom middleware
+app.use(logger)
+app.use(auth)
 
 const genres = [
   { id: 1, genre: 'Action' },
