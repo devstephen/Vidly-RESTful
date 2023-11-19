@@ -1,8 +1,10 @@
+const asyncMiddleware = require('../middleware/async')
 const auth = require('../middleware/auth')
 const { Genre, validate } = require('../models/genre')
 const mongoose = require('mongoose')
 const express = require('express')
 const admin = require('../middleware/admin')
+// const { default: next } = require('next')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
